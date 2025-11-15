@@ -1,14 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
+import StackNavigator from "./navigation/StackNavigator";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <StackNavigator />;
 }
+
+onAuthStateChanged(auth, (user) => {
+  console.log("AUTH STATUS:", user ? "LOGGED IN" : "LOGGED OUT");
+});
 
 const styles = StyleSheet.create({
   container: {
